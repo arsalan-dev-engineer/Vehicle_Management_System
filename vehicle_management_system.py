@@ -39,9 +39,10 @@ def main():
         try:
             print()
             choice = int(input("Press key:\n" +
-                               "1. View Vehicle Database\n" +
-                               "2. Add Vehicle to Database\n" +
-                               "3. Exit Database\n"))
+                               "1. View Vehicle\n" +
+                               "2. Add Vehicle\n" +
+                               "3. Search Vehicle\n" +
+                               "4. Save and Exit Database\n"))
 
             if choice == 1:
                 view()
@@ -50,9 +51,12 @@ def main():
                 add()
 
             elif choice == 3:
+                search_v()
+
+            elif choice == 4:
                 exit_ms()
 
-            elif choice != 1 or 2 or 3:
+            elif choice != 1 or 2 or 3 or 4:
                 print("Select again")
         except ValueError:
             print("Incorrect Value")
@@ -92,6 +96,20 @@ def add():
 def view():
     print("\nVehicle Database")
     print(vehicle_ms)
+
+
+# search vehicle ---------------
+
+def search_v():
+    print("\nSearch vehicle")
+    search = input("Enter vehicle reg: ")
+    vehicle_ms.get_string(fields=["Vehicle Reg"])
+
+    # search for vehicle reg through this field "vehicle reg"
+    if search.upper() in vehicle_ms.get_string(fields=["Vehicle Reg"]):
+        print("Vehicle exits")
+    else:
+        print("Vehicle does not exist")
 
 
 # exit management system ---------------
